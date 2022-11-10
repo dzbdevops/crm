@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CompanyDetailController!{% endblock %}
+
+{% block body %}
+
+ID: {{ company.id }} <br>
+Nazwa firmy: {{ company.name }} <br>
+Ostatni kontakt: {{ company.lastCallDate|date }} <br>
+Widok aktywności: {{ company.status }} <br>
+Opis: {{ company.description }} <br>
+Ulica: {{ company.street }} <br>
+Kod pocztowy: {{ company.zipCode }} <br>
+Miasto: {{ company.city }} <br>
+Telefon: {{ company.phone }} <br>
+Adres WWW: {{ company.website }} <br>
+<td><a href="{{ path('app_company_edit', {'id':company.id}) }}">Edit</a></td><br>
+<td><a href="{{ path('app_company_delete', {'id':company.id}) }}">Delete</a></td><br>
+<td><a href="{{ path('app_customer', {'id':company.id}) }}">Dodaj kontrahenta</a></td><br>
+<td><a href="{{ path('app_activity', {'id':company.id}) }}">Dodaj aktywność</a></td>
+<br>
+Dane kontrahentów:
+<br>
+
+
+<table>
+  <tr>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Telefon</th>
+    <th>email</th>
+  </tr>
+
+{% for customer in customers %} 
+
+<tr>
+    <td>{{customer.name}}</td>
+    <td>{{customer.surname}}</td>
+    <td>{{customer.phone}}</td>
+    <td>{{customer.email}}</td>
+</tr>
+</table>
+{% endfor %}
+<br>
+<table>
+
+{% set iterator = 1%}
+
+{% for activity in activities %} 
+
+<tr>
+    <td>{{iterator}}</td>
+    <td>{{activity.description}}</td>
+    <td>{{activity.date|date}}</td>
+    <td>{{activity.nextContact|date}}</td>
+    <td>{{activity.company.name}}</td>
+    <td>
+    {% for customer in activity.customer %}
+    
+    {{customer.name}} {{customer.surname}}
+
+    {% endfor %}
+    </td>
+    <td><a href="{{ path('app_activity_edit', {'id':activity.id}) }}">Edit</a></td>
+    <td><a href="{{ path('app_activity_delete', {'id':activity.id}) }}">Delete</a></td><br>
+</tr>
+<br>
+<br>
+</table>
+{% set iterator = iterator+1 %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+
+  <style> table, th, td {
+  border: 1px solid;
+} </style>
+
+<h3>Wszystkie firmy:</h3>
+
+ <table>
+  <tr>
+    <th>Nazwa</th>
+    <th>Ostatni kontakt</th>
+    <th>Widok aktywności</th>
+    <th>Opis firmy</th>
+    <th>Ulica</th>
+    <th>kod pocztowy</th>
+    <th>Miejscowość</th>
+    <th>Telefon</th>
+    <th>Adres WWW</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+    {% for company in allCompanies %}
+    <tr>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.name }}</a></td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.lastCallDate|date }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.status }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.description }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.street }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.zipCode }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.city }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.phone }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.website }}</td>
+        <td><a href="{{ path('app_company_edit', {'id':company.id}) }}">Edit</a></td>
+        <td><a href="{{ path('app_company_delete', {'id':company.id}) }}">Delete</a></td>       
+
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Moje firmy:</h3>
+
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th>Ostatni kontakt</th>
+    <th>Widok aktywności</th>
+    <th>Opis firmy</th>
+    <th>Ulica</th>
+    <th>kod pocztowy</th>
+    <th>Miejscowość</th>
+    <th>Telefon</th>
+    <th>Adres WWW</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+    {% for company in myCompanies %}
+    <tr>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.name }}</a></td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.lastCallDate|date }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.status }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.description }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.street }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.zipCode }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.city }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.phone }}</td>
+        <td><a href="{{ path('app_company_detail', {'id':company.id}) }}">{{ company.website }}</td>
+        <td><a href="{{ path('app_company_edit', {'id':company.id}) }}">Edit</a></td>
+        <td><a href="{{ path('app_company_delete', {'id':company.id}) }}">Delete</a></td>       
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+
+
+
+{% endblock %}
